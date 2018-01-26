@@ -26,3 +26,16 @@ build_script:
   - cmake --build . --target install --config %CONFIGURATION%
   - ctest --output-on-failure --build-config %CONFIGURATION%
   - cmake -E chdir ../python/MaterialXTest python main.py
+
+after_build:
+
+artifacts:
+- path: installed
+  name: MaterialX
+
+deploy:
+- provider: GitHub
+  auth_token:
+    secure: qg4BvNKremS4OMcbGZEjaXrumrQ+8/pJvr3WrNqM1ZQDyzvNpmUEA0ZMRkUJzeOh
+  on:
+    branch: adsk_update
