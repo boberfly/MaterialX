@@ -1,4 +1,4 @@
-version: "{build}"
+version: 1.36."{build}"
 os: Visual Studio 2017
 clone_folder: C:\Projects\MaterialX
 
@@ -28,14 +28,15 @@ build_script:
   - cmake -E chdir ../python/MaterialXTest python main.py
 
 after_build:
+  - 7z a MaterialXCore.zip %APPVEYOR_BUILD_FOLDER%\install
 
 artifacts:
-- path: installed
-  name: MaterialX
+- path: MaterialXCore.zip
+  name: MaterialXCore
 
 deploy:
 - provider: GitHub
+  release: MaterialX-v$(appveyor_build_version)
+  prerelease: true
   auth_token:
     secure: qg4BvNKremS4OMcbGZEjaXrumrQ+8/pJvr3WrNqM1ZQDyzvNpmUEA0ZMRkUJzeOh
-  on:
-    branch: adsk_update
