@@ -28,10 +28,10 @@ build_script:
   - cmake -E chdir ../python/MaterialXTest python main.py
 
 after_build:
-  - 7z a MaterialXCore.zip %APPVEYOR_BUILD_FOLDER%\install
+  - 7z a MaterialX-v$(appveyor_build_version).zip %APPVEYOR_BUILD_FOLDER%\installed
 
 artifacts:
-- path: MaterialXCore.zip
+- path: MaterialX-v$(appveyor_build_version).zip
   name: MaterialXCore
 
 deploy:
