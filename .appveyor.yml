@@ -28,15 +28,14 @@ build_script:
   - cmake -E chdir ../python/MaterialXTest python main.py
 
 after_build:
-  - 7z a MaterialX-v$(appveyor_build_version).zip %APPVEYOR_BUILD_FOLDER%\installed
+  - 7z a MaterialX_ADSK.zip C:\Projects\MaterialX\build\installed
 
 artifacts:
-- path: MaterialX-v$(appveyor_build_version).zip
-  name: MaterialXCore
+- path: MaterialX_ADSK.zip
+  name: MaterialX_ADSK
 
 deploy:
 - provider: GitHub
-  release: MaterialX-v$(appveyor_build_version)
   prerelease: true
   auth_token:
     secure: qg4BvNKremS4OMcbGZEjaXrumrQ+8/pJvr3WrNqM1ZQDyzvNpmUEA0ZMRkUJzeOh
